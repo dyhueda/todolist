@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const tagSchema = new mongoose.Schema(
   {
-    title:{type : 'string', required: true},
+    title:{type : 'string', required: true, unique: true},
   },
   {
     timestamps : true,

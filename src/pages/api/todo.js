@@ -1,6 +1,7 @@
 import connectMongoDb from "@/libs/mongodb";
 import mongoose from "mongoose";
 import ToDo from "@/models/todo";
+import Tags from "@/models/tag";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
