@@ -93,7 +93,7 @@ export default function ToDoList() {
             {FilteredList ? (
               <div>
                 {FilteredList?.map((todo) => (
-                  <ToDoInput key={todo._id} todo={todo} tags={TagsList} />
+                  <ToDoInput key={todo._id} todo={todo} tags={TagsList} filter={TagFilter} />
                 ))}
               </div>
             ) : (

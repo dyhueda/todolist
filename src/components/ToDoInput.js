@@ -13,6 +13,7 @@ export default function ToDoInput(props) {
   const newArray = AllTags.filter((tag) => {
     return !todo.tags.some((todoTag) => todoTag._id === tag._id);
   });
+  const filter = props.filter
   const [Title, setTitle] = useState(todo.title);
   const [Disabled, setDisabled] = useState(true);
   const [Tags, setTags] = useState(props.todo.tags);
@@ -87,6 +88,8 @@ export default function ToDoInput(props) {
   return (
     <div className="flex flex-col py-1">
       {Disabled ? (
+        (!filter && (
+
         <div className="flex gap-1">
           {Tags.map((tag) => (
             <div
@@ -97,6 +100,7 @@ export default function ToDoInput(props) {
             </div>
           ))}
         </div>
+        ))
       ) : (
         <div className="flex gap-1">
           {Tags.map((tag) => (
