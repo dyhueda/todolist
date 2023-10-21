@@ -1,9 +1,9 @@
-import ToDoListComponent from "@/components/ToDoListComponent";
+import ToDoList from "@/components/ToDoList";
 
 export default function todoPage(){
     return(
-        <div>
-          <ToDoListComponent/>
+        <div className="mx-2">
+          <ToDoList/>
         </div>
     )
 }

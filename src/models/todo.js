@@ -2,8 +2,8 @@ import mongoose from "mongoose";
 
 const todoSchema = new mongoose.Schema(
   {
-    title:{type : 'string', required: true},
-    status:{type : 'boolean', required: true , default: true},
+    title:{type : 'string', required: true, unique: true},
+    checked:{type : 'boolean', required: true , default: true},
     tags : [
       {
         type : mongoose.Schema.Types.ObjectId,

@@ -19,7 +19,7 @@ export default function Header() {
       <button
         onClick={(e) => {
           e.preventDefault;
-          router.push("/");
+          router.push("/todo");
         }}
         className={`${sairaStencil.className} text-3xl font-normal`}
       >
