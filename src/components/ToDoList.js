@@ -14,6 +14,7 @@ export default function ToDoList() {
   const [TagFilter, setTagFilter] = useState();
   const [FilteredList, setFilteredList] = useState();
   const [AddInput, setAddInput] = useState(false);
+  const [AddToDoTag, setAddToDoTag] = useState();
   const router = useRouter();
 
   useEffect(() => {
@@ -47,14 +48,15 @@ export default function ToDoList() {
   useEffect(() => {
     if (ToDoList !== undefined && TagFilter !== undefined)
       setFilteredList(tagFilter(TagFilter, ToDoList));
-  }, [TagFilter]);
+  }, [TagFilter, ToDoList]);
 
   function handleSetFilter(tag) {
-    if (tag === TagFilter) {
+    if (tag.title === TagFilter) {
       setFilteredList(undefined);
       setTagFilter(undefined);
     } else {
-      setTagFilter(tag);
+      setTagFilter(tag.title);
+      setAddToDoTag(tag);
     }
   }
   return (
@@ -69,7 +71,7 @@ export default function ToDoList() {
                 className="px-1 py-0.5 rounded-lg text-base min-w-fit bg-blue-800 text-white"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSetFilter(tag.title);
+                  handleSetFilter(tag);
                 }}
                 key={tag._id}
               >
@@ -82,18 +84,25 @@ export default function ToDoList() {
                 e.preventDefault();
                 router.push("/tags");
               }}
-              >
+            >
               <AddIcon />
             </button>
           </div>
           {TagFilter && (
-            <h1 className="p-1 ">Showing all items with {TagFilter} :</h1>
+            <h1 className="p-1 ">Showing all items with the tag {TagFilter} :</h1>
           )}
           <div className="flex flex-col gap-1 text-xl font-medium">
             {FilteredList ? (
               <div>
                 {FilteredList?.map((todo) => (
-                  <ToDoInput key={todo._id} todo={todo} tags={TagsList} filter={TagFilter} />
+                  <ToDoInput
+                    key={todo._id}
+                    todo={todo}
+                    tags={TagsList}
+                    filter={TagFilter}
+                    setTodoList={setToDoList}
+                    todoList={ToDoList}
+                  />
                 ))}
               </div>
             ) : (
@@ -115,6 +124,7 @@ export default function ToDoList() {
                 setToDoList={setToDoList}
                 ToDoList={ToDoList}
                 setAddInput={setAddInput}
+                filteredTag={AddToDoTag}
               />
             )}
           </div>

@@ -9,6 +9,7 @@ import CheckedBoxIcon from "./icons/CheckedBoxIcon";
 
 export default function ToDoInput(props) {
   const todo = props.todo || [];
+  const todoList = props.todoList
   const AllTags = props.tags || [];
   const newArray = AllTags.filter((tag) => {
     return !todo.tags.some((todoTag) => todoTag._id === tag._id);
@@ -61,7 +62,7 @@ export default function ToDoInput(props) {
     });
     const response = await res.json();
     if (res.ok) {
-      const newArray = props.todoList.filter((ToDo) => ToDo._id !== todo._id);
+      const newArray = todoList.filter((ToDo) => ToDo._id !== todo._id);
       props.setTodoList(newArray);
       console.log("ok");
     } else alert(response.message);
